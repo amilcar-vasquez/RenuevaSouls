@@ -1,0 +1,110 @@
+<script lang="ts">
+  let { form } = $props();
+</script>
+
+<svelte:head>
+  <title>Admin Login | Renueva</title>
+</svelte:head>
+
+<main class="page">
+  <section class="card">
+    <h1>Admin Login</h1>
+
+    {#if form?.errors?.auth}
+      <p class="error">{form.errors.auth}</p>
+    {/if}
+
+    <form method="POST">
+      <label for="username">Username</label>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        required
+        value={form?.values?.username ?? ''}
+      />
+      {#if form?.errors?.username}
+        <p class="error">{form.errors.username}</p>
+      {/if}
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required />
+      {#if form?.errors?.password}
+        <p class="error">{form.errors.password}</p>
+      {/if}
+
+      <button type="submit">Sign in</button>
+    </form>
+  </section>
+</main>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background: #f7f8fb;
+    color: #1f1f1f;
+    font-family: Inter, Roboto, 'Segoe UI', Arial, sans-serif;
+  }
+
+  .page {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 14px rgba(18, 43, 79, 0.08);
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    color: #3557d6;
+  }
+
+  form {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  label {
+    font-weight: 600;
+    margin-top: 0.2rem;
+  }
+
+  input {
+    border: 1px solid #d1d5e0;
+    border-radius: 12px;
+    padding: 0.75rem 0.85rem;
+    font: inherit;
+  }
+
+  input:focus {
+    outline: 2px solid #3557d6;
+    outline-offset: 1px;
+    border-color: #3557d6;
+  }
+
+  button {
+    margin-top: 0.4rem;
+    border: none;
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+    font: inherit;
+    font-weight: 600;
+    background: #3557d6;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .error {
+    margin: 0;
+    color: #b22020;
+    font-size: 0.9rem;
+  }
+</style>
