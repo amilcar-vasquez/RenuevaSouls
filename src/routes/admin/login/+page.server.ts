@@ -5,7 +5,7 @@ import { db } from '$lib/server/db';
 import { loginSchema } from '$lib/validation';
 import { setAdminSession } from '$lib/server/auth';
 
-function flattenErrors(fieldErrors: Record<string, string[] | undefined>) {
+function flattenErrors(fieldErrors: Record<string, string[] | undefined>): Record<string, string> {
   return Object.fromEntries(
     Object.entries(fieldErrors)
       .filter(([, value]) => value && value.length > 0)
@@ -45,7 +45,7 @@ export const actions: Actions = {
 
     if (!admin) {
       return fail(401, {
-        errors: { auth: 'Invalid username or password' },
+        errors: { auth: 'Invalid username or password' } as Record<string, string>,
         values: { username: values.username }
       });
     }
@@ -54,7 +54,7 @@ export const actions: Actions = {
 
     if (!passwordMatches) {
       return fail(401, {
-        errors: { auth: 'Invalid username or password' },
+        errors: { auth: 'Invalid username or password' } as Record<string, string>,
         values: { username: values.username }
       });
     }

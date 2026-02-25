@@ -1,5 +1,6 @@
 <script lang="ts">
   let { form } = $props();
+  const errors = $derived((form?.errors ?? {}) as Record<string, string>);
 </script>
 
 <svelte:head>
@@ -10,8 +11,8 @@
   <section class="card">
     <h1>Admin Login</h1>
 
-    {#if form?.errors?.auth}
-      <p class="error">{form.errors.auth}</p>
+    {#if errors.auth}
+      <p class="error">{errors.auth}</p>
     {/if}
 
     <form method="POST">
@@ -23,14 +24,14 @@
         required
         value={form?.values?.username ?? ''}
       />
-      {#if form?.errors?.username}
-        <p class="error">{form.errors.username}</p>
+      {#if errors.username}
+        <p class="error">{errors.username}</p>
       {/if}
 
       <label for="password">Password</label>
       <input id="password" name="password" type="password" required />
-      {#if form?.errors?.password}
-        <p class="error">{form.errors.password}</p>
+      {#if errors.password}
+        <p class="error">{errors.password}</p>
       {/if}
 
       <button type="submit">Sign in</button>

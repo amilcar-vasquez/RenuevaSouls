@@ -12,7 +12,7 @@
       return form?.values?.wants_contact ?? true;
     }
 
-    return form?.values?.[field] ?? '';
+    return (form?.values as Record<string, unknown> | undefined)?.[field] ?? '';
   }
 
   function resolveError(field: string) {
