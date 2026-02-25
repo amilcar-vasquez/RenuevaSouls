@@ -37,6 +37,7 @@
             <th>Wants Contact</th>
             <th>Comments</th>
             <th>Date Submitted</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -53,6 +54,18 @@
                 <td>{row.wants_contact ? 'Yes' : 'No'}</td>
                 <td>{row.comments ?? '-'}</td>
                 <td>{new Date(row.created_at).toLocaleString()}</td>
+                <td>
+                  <form
+                    method="POST"
+                    action="?/delete"
+                    onsubmit={(e) => {
+                      if (!confirm(`Delete entry for ${row.full_name}?`)) e.preventDefault();
+                    }}
+                  >
+                    <input type="hidden" name="id" value={row.id} />
+                    <button type="submit" class="delete">Delete</button>
+                  </form>
+                </td>
               </tr>
             {/each}
           {/if}
@@ -168,5 +181,18 @@
     text-align: center;
     color: #777;
     padding: 1.2rem;
+  }
+
+  .delete {
+    border-color: #d63535;
+    color: #d63535;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .delete:hover {
+    background: #d63535;
+    color: #fff;
   }
 </style>
