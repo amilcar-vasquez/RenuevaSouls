@@ -1,11 +1,12 @@
 import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import type { Cookies } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 
 const SESSION_COOKIE = 'renueva_session';
 const SESSION_TTL_SECONDS = 60 * 60 * 8;
 
 function getSessionSecret() {
-  const secret = process.env.SESSION_SECRET;
+  const secret = env.SESSION_SECRET;
 
   if (!secret) {
     throw new Error('SESSION_SECRET is not set. Add it to your .env file.');
@@ -80,7 +81,7 @@ export function setAdminSession(cookies: Cookies, username: string) {
     path: '/',
     httpOnly: true,
     sameSite: 'strict',
-    secure: process.env.NODE_ENV === 'production',
+    secure: env.NODE_ENV === 'production',
     maxAge: SESSION_TTL_SECONDS
   });
 }

@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { submissionSchema } from '$lib/validation';
 import { db } from '$lib/server/db';
@@ -58,8 +58,6 @@ export const actions: Actions = {
       userAgent
     );
 
-    return {
-      success: true
-    };
+    throw redirect(303, '/thank-you');
   }
 };

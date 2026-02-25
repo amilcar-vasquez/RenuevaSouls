@@ -4,24 +4,22 @@
 
   let { form } = $props();
 
-  let submitting = false;
-  let clientErrors: Record<string, string> = {};
+  let submitting = $state(false);
+  let clientErrors = $state<Record<string, string>>({});
 
-  const defaults = {
-    full_name: form?.values?.full_name ?? '',
-    address: form?.values?.address ?? '',
-    phone: form?.values?.phone ?? '',
-    comments: form?.values?.comments ?? '',
-    wants_contact: form?.values?.wants_contact ?? true
-  };
+  function fieldValue(field: string) {
+    if (field === 'wants_contact') {
+      return form?.values?.wants_contact ?? true;
+    }
 
-  const serverErrors: Record<string, string> = form?.errors ?? {};
-
-  function resolveError(field: string) {
-    return clientErrors[field] ?? serverErrors[field] ?? '';
+    return form?.values?.[field] ?? '';
   }
 
-  const submitEnhance = enhance(({ formData, cancel }) => {
+  function resolveError(field: string) {
+    return clientErrors[field] ?? form?.errors?.[field] ?? '';
+  }
+
+  function handleSubmit({ formData, cancel }: { formData: FormData; cancel: () => void }) {
     const values = {
       full_name: String(formData.get('full_name') ?? ''),
       address: String(formData.get('address') ?? ''),
@@ -46,11 +44,11 @@
     clientErrors = {};
     submitting = true;
 
-    return async ({ update, result }) => {
+    return async ({ update }: { update: (opts?: { reset?: boolean }) => Promise<void> }) => {
       submitting = false;
-      await update({ reset: result.type === 'success' });
+      await update();
     };
-  });
+  }
 </script>
 
 <svelte:head>
@@ -66,31 +64,27 @@
     <h1>Renueva</h1>
     <p class="subtitle">Please share your information so we can support you.</p>
 
-    {#if form?.success}
-      <p class="success">Thank you. We will contact you soon.</p>
-    {/if}
-
-    <form method="POST" use:submitEnhance>
+    <form method="POST" use:enhance={handleSubmit}>
       <label for="full_name">Full Name *</label>
-      <input id="full_name" name="full_name" type="text" required value={defaults.full_name} />
+      <input id="full_name" name="full_name" type="text" required value={String(fieldValue('full_name'))} />
       {#if resolveError('full_name')}
         <p class="error">{resolveError('full_name')}</p>
       {/if}
 
       <label for="address">Address *</label>
-      <input id="address" name="address" type="text" required value={defaults.address} />
+      <input id="address" name="address" type="text" required value={String(fieldValue('address'))} />
       {#if resolveError('address')}
         <p class="error">{resolveError('address')}</p>
       {/if}
 
       <label for="phone">Phone Number</label>
-      <input id="phone" name="phone" type="tel" value={defaults.phone} />
+      <input id="phone" name="phone" type="tel" value={String(fieldValue('phone'))} />
       {#if resolveError('phone')}
         <p class="error">{resolveError('phone')}</p>
       {/if}
 
       <label for="comments">Comments / Prayer Request</label>
-      <textarea id="comments" name="comments" rows="4">{defaults.comments}</textarea>
+      <textarea id="comments" name="comments" rows="4">{String(fieldValue('comments'))}</textarea>
       {#if resolveError('comments')}
         <p class="error">{resolveError('comments')}</p>
       {/if}
@@ -100,7 +94,7 @@
           id="wants_contact"
           name="wants_contact"
           type="checkbox"
-          checked={Boolean(defaults.wants_contact)}
+          checked={Boolean(fieldValue('wants_contact'))}
         />
         <span>Would you like someone to contact you?</span>
       </label>
@@ -210,12 +204,4 @@
     font-size: 0.9rem;
   }
 
-  .success {
-    margin: 0 0 1rem;
-    background: #edf7ef;
-    color: #1e6c2d;
-    border-radius: 12px;
-    padding: 0.75rem;
-    font-weight: 500;
-  }
 </style>
