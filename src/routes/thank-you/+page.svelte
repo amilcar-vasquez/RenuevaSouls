@@ -23,9 +23,10 @@
 <style>
   :global(body) {
     margin: 0;
-    background: #f7f8fb;
-    color: #1f1f1f;
+    background: #141218;
+    color: #E6E1E5;
     font-family: Inter, Roboto, 'Segoe UI', Arial, sans-serif;
+    color-scheme: dark;
   }
 
   .page {
@@ -38,10 +39,10 @@
   .card {
     width: 100%;
     max-width: 520px;
-    background: #fff;
+    background: #211F26;
     border-radius: 16px;
     padding: 2rem 1.5rem;
-    box-shadow: 0 4px 14px rgba(18, 43, 79, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
     text-align: center;
   }
 
@@ -52,8 +53,8 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #e6f4ea;
-    color: #1e6c2d;
+    background: #3B2700;
+    color: #FFB74D;
     font-size: 2rem;
     margin-bottom: 1rem;
   }
@@ -61,11 +62,11 @@
   h1 {
     margin: 0 0 0.5rem;
     font-size: 1.8rem;
-    color: #3557d6;
+    color: #FFB74D;
   }
 
   .message {
-    color: #555;
+    color: #CAC4D0;
     margin: 0 0 1.5rem;
     line-height: 1.6;
   }
@@ -73,33 +74,33 @@
   blockquote {
     margin: 0 0 1.5rem;
     padding: 1rem 1.25rem;
-    background: #f4f6ff;
-    border-left: 4px solid #3557d6;
+    background: #2B2930;
+    border-left: 4px solid #FFB74D;
     border-radius: 0 12px 12px 0;
     text-align: left;
   }
 
   blockquote p {
     margin: 0 0 0.4rem;
-    color: #333;
+    color: #E6E1E5;
     font-style: italic;
     line-height: 1.65;
   }
 
   cite {
     font-size: 0.88rem;
-    color: #3557d6;
+    color: #FFB74D;
     font-style: normal;
     font-weight: 600;
   }
 
   .back {
     display: inline-block;
-    border: 1px solid #3557d6;
+    border: 1px solid #FFB74D;
     border-radius: 12px;
     padding: 0.6rem 1.2rem;
     text-decoration: none;
-    color: #3557d6;
+    color: #FFB74D;
     font-weight: 600;
   }
 </style>

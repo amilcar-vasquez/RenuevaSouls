@@ -78,9 +78,10 @@
 <style>
   :global(body) {
     margin: 0;
-    background: #f7f8fb;
-    color: #1f1f1f;
+    background: #141218;
+    color: #E6E1E5;
     font-family: Inter, Roboto, 'Segoe UI', Arial, sans-serif;
+    color-scheme: dark;
   }
 
   .page {
@@ -91,10 +92,10 @@
   .card {
     max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
+    background: #211F26;
     border-radius: 16px;
     padding: 1rem;
-    box-shadow: 0 4px 14px rgba(18, 43, 79, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
   .topbar {
@@ -107,12 +108,12 @@
 
   h1 {
     margin: 0;
-    color: #3557d6;
+    color: #FFB74D;
   }
 
   p {
     margin: 0.25rem 0 0;
-    color: #666;
+    color: #CAC4D0;
   }
 
   .actions {
@@ -131,11 +132,11 @@
 
   a,
   button {
-    border: 1px solid #3557d6;
+    border: 1px solid #FFB74D;
     border-radius: 12px;
     padding: 0.5rem 0.8rem;
     text-decoration: none;
-    color: #3557d6;
+    color: #FFB74D;
     background: transparent;
     font: inherit;
     cursor: pointer;
@@ -143,13 +144,13 @@
 
   .active,
   .export {
-    background: #3557d6;
-    color: #fff;
+    background: #FFB74D;
+    color: #4A2800;
   }
 
   .ghost {
-    border-color: #999;
-    color: #555;
+    border-color: #49454F;
+    color: #CAC4D0;
   }
 
   .table-wrap {
@@ -165,34 +166,35 @@
   th,
   td {
     text-align: left;
-    border-bottom: 1px solid #e9ebf2;
+    border-bottom: 1px solid #2B2930;
     padding: 0.7rem;
     vertical-align: top;
     font-size: 0.95rem;
   }
 
   th {
-    color: #444;
+    color: #CAC4D0;
     font-weight: 600;
-    background: #fbfcff;
+    background: #1C1B1F;
   }
 
   .empty {
     text-align: center;
-    color: #777;
+    color: #79747E;
     padding: 1.2rem;
   }
 
   .delete {
-    border-color: #d63535;
-    color: #d63535;
+    border-color: #F2B8B5;
+    color: #F2B8B5;
     padding: 0.3rem 0.6rem;
     font-size: 0.85rem;
     white-space: nowrap;
   }
 
   .delete:hover {
-    background: #d63535;
-    color: #fff;
+    background: #8C1D18;
+    border-color: #8C1D18;
+    color: #F9DEDC;
   }
 </style>

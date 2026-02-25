@@ -61,7 +61,7 @@
 
 <main class="page">
   <section class="card">
-    <h1>Renueva</h1>
+    <h1>Renueva 2026</h1>
     <p class="subtitle">Please share your information so we can support you.</p>
 
     <form method="POST" use:enhance={handleSubmit}>
@@ -109,9 +109,10 @@
 <style>
   :global(body) {
     margin: 0;
-    background: #f7f8fb;
-    color: #1f1f1f;
+    background: #141218;
+    color: #E6E1E5;
     font-family: Inter, Roboto, 'Segoe UI', Arial, sans-serif;
+    color-scheme: dark;
   }
 
   .page {
@@ -124,21 +125,21 @@
   .card {
     width: 100%;
     max-width: 560px;
-    background: #fff;
+    background: #211F26;
     border-radius: 16px;
     padding: 1.25rem;
-    box-shadow: 0 4px 14px rgba(18, 43, 79, 0.08);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
   h1 {
     margin: 0;
     font-size: 1.6rem;
-    color: #3557d6;
+    color: #FFB74D;
   }
 
   .subtitle {
     margin: 0.4rem 0 1.2rem;
-    color: #555;
+    color: #CAC4D0;
   }
 
   form {
@@ -149,22 +150,24 @@
   label {
     font-weight: 600;
     margin-top: 0.3rem;
+    color: #E6E1E5;
   }
 
   input,
   textarea {
-    border: 1px solid #d1d5e0;
+    border: 1px solid #49454F;
     border-radius: 12px;
     padding: 0.75rem 0.85rem;
     font: inherit;
-    background: #fff;
+    background: #2B2930;
+    color: #E6E1E5;
   }
 
   input:focus,
   textarea:focus {
-    outline: 2px solid #3557d6;
+    outline: 2px solid #FFB74D;
     outline-offset: 1px;
-    border-color: #3557d6;
+    border-color: #FFB74D;
   }
 
   .checkbox {
@@ -179,6 +182,7 @@
     width: 18px;
     height: 18px;
     padding: 0;
+    accent-color: #FFB74D;
   }
 
   button {
@@ -188,19 +192,23 @@
     padding: 0.85rem 1rem;
     font: inherit;
     font-weight: 600;
-    background: #3557d6;
-    color: #fff;
+    background: #FFB74D;
+    color: #4A2800;
     cursor: pointer;
   }
 
+  button:hover {
+    background: #FFA726;
+  }
+
   button:disabled {
-    opacity: 0.7;
+    opacity: 0.5;
     cursor: not-allowed;
   }
 
   .error {
     margin: 0;
-    color: #b22020;
+    color: #F2B8B5;
     font-size: 0.9rem;
   }
 
