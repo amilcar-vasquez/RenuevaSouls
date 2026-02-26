@@ -35,6 +35,7 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Wants Contact</th>
+            <th>Accepted Christ</th>
             <th>Comments</th>
             <th>Date Submitted</th>
             <th></th>
@@ -43,7 +44,7 @@
         <tbody>
           {#if data.submissions.length === 0}
             <tr>
-              <td colspan="6" class="empty">No submissions found.</td>
+              <td colspan="7" class="empty">No submissions found.</td>
             </tr>
           {:else}
             {#each data.submissions as row}
@@ -52,6 +53,7 @@
                 <td>{row.address}</td>
                 <td>{row.phone ?? '-'}</td>
                 <td>{row.wants_contact ? 'Yes' : 'No'}</td>
+                <td>{row.accepted_christ ? 'Yes' : 'No'}</td>
                 <td>{row.comments ?? '-'}</td>
                 <td>{new Date(row.created_at).toLocaleString()}</td>
                 <td>

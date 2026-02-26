@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ url, locals }) => {
   const filter = filterParam === 'contact' ? 'contact' : 'all';
 
   let query = `
-    SELECT id, full_name, address, phone, comments, wants_contact, created_at
+    SELECT id, full_name, address, phone, comments, wants_contact, accepted_christ, created_at
     FROM submissions
   `;
 
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ url, locals }) => {
   query += ' ORDER BY datetime(created_at) DESC, id DESC';
 
   const submissions = db.prepare(query).all() as Array<
-    Pick<SubmissionRow, 'id' | 'full_name' | 'address' | 'phone' | 'comments' | 'wants_contact' | 'created_at'>
+    Pick<SubmissionRow, 'id' | 'full_name' | 'address' | 'phone' | 'comments' | 'wants_contact' | 'accepted_christ' | 'created_at'>
   >;
 
   return {

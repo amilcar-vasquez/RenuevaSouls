@@ -10,6 +10,7 @@ export type SubmissionRow = {
   phone: string | null;
   comments: string | null;
   wants_contact: number;
+  accepted_christ: number;
   ip_address: string | null;
   user_agent: string | null;
   created_at: string;
@@ -38,6 +39,7 @@ export function initDatabase() {
       phone TEXT,
       comments TEXT,
       wants_contact BOOLEAN NOT NULL DEFAULT 1,
+      accepted_christ BOOLEAN NOT NULL DEFAULT 0,
       ip_address TEXT,
       user_agent TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -56,6 +58,13 @@ export function initDatabase() {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  // Migrate: add accepted_christ column if it doesn't exist yet.
+  try {
+    db.exec('ALTER TABLE submissions ADD COLUMN accepted_christ BOOLEAN NOT NULL DEFAULT 0');
+  } catch {
+    // Column already exists – ignore.
+  }
 
   // Seed an admin from env vars if provided and not yet present.
   // Set ADMIN_USERNAME and ADMIN_PASSWORD in Railway's Variables tab.

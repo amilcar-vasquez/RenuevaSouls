@@ -5,7 +5,8 @@ export const submissionSchema = z.object({
   address: z.string().trim().min(4, 'Address is required').max(220, 'Address is too long'),
   phone: z.string().trim().max(40, 'Phone is too long').optional().or(z.literal('')),
   comments: z.string().trim().max(1500, 'Comments are too long').optional().or(z.literal('')),
-  wants_contact: z.boolean().default(true)
+  wants_contact: z.boolean().default(true),
+  accepted_christ: z.boolean().default(false)
 });
 
 export const loginSchema = z.object({

@@ -11,6 +11,9 @@
     if (field === 'wants_contact') {
       return form?.values?.wants_contact ?? true;
     }
+    if (field === 'accepted_christ') {
+      return form?.values?.accepted_christ ?? false;
+    }
 
     return (form?.values as Record<string, unknown> | undefined)?.[field] ?? '';
   }
@@ -25,7 +28,8 @@
       address: String(formData.get('address') ?? ''),
       phone: String(formData.get('phone') ?? ''),
       comments: String(formData.get('comments') ?? ''),
-      wants_contact: formData.get('wants_contact') === 'on'
+      wants_contact: formData.get('wants_contact') === 'on',
+      accepted_christ: formData.get('accepted_christ') === 'on'
     };
 
     const parsed = submissionSchema.safeParse(values);
@@ -101,6 +105,16 @@
           checked={Boolean(fieldValue('wants_contact'))}
         />
         <span>Would you like someone to contact you?</span>
+      </label>
+
+      <label class="checkbox" for="accepted_christ">
+        <input
+          id="accepted_christ"
+          name="accepted_christ"
+          type="checkbox"
+          checked={Boolean(fieldValue('accepted_christ'))}
+        />
+        <span>I accepted Christ today for the first time.</span>
       </label>
 
       <button type="submit" disabled={submitting}>

@@ -21,7 +21,8 @@ export const actions: Actions = {
       address: String(formData.get('address') ?? ''),
       phone: String(formData.get('phone') ?? ''),
       comments: String(formData.get('comments') ?? ''),
-      wants_contact: formData.get('wants_contact') === 'on'
+      wants_contact: formData.get('wants_contact') === 'on',
+      accepted_christ: formData.get('accepted_christ') === 'on'
     };
 
     const parsed = submissionSchema.safeParse(rawValues);
@@ -44,9 +45,10 @@ export const actions: Actions = {
         phone,
         comments,
         wants_contact,
+        accepted_christ,
         ip_address,
         user_agent
-      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
       `
     ).run(
       parsed.data.full_name,
@@ -54,6 +56,7 @@ export const actions: Actions = {
       parsed.data.phone || null,
       parsed.data.comments || null,
       parsed.data.wants_contact ? 1 : 0,
+      parsed.data.accepted_christ ? 1 : 0,
       ipAddress,
       userAgent
     );

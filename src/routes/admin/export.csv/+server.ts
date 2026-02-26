@@ -19,7 +19,7 @@ export const GET: RequestHandler = async ({ url, locals }) => {
   const filter = filterParam === 'contact' ? 'contact' : 'all';
 
   let query = `
-    SELECT full_name, address, phone, wants_contact, comments, created_at
+    SELECT full_name, address, phone, wants_contact, accepted_christ, comments, created_at
     FROM submissions
   `;
 
@@ -34,11 +34,12 @@ export const GET: RequestHandler = async ({ url, locals }) => {
     address: string;
     phone: string | null;
     wants_contact: number;
+    accepted_christ: number;
     comments: string | null;
     created_at: string;
   }>;
 
-  const header = ['Name', 'Address', 'Phone', 'Wants Contact', 'Comments', 'Date Submitted'];
+  const header = ['Name', 'Address', 'Phone', 'Wants Contact', 'Accepted Christ', 'Comments', 'Date Submitted'];
   const lines = [header.join(',')];
 
   for (const row of rows) {
@@ -48,6 +49,7 @@ export const GET: RequestHandler = async ({ url, locals }) => {
         escapeCsv(row.address),
         escapeCsv(row.phone),
         escapeCsv(row.wants_contact ? 'Yes' : 'No'),
+        escapeCsv(row.accepted_christ ? 'Yes' : 'No'),
         escapeCsv(row.comments),
         escapeCsv(row.created_at)
       ].join(',')
