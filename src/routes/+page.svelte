@@ -61,6 +61,10 @@
 
 <main class="page">
   <section class="card">
+    <div class="logo-holder">
+      <!-- Place your logo PNG at: static/logo.png -->
+      <img src="/logo.png" alt="Renueva logo" class="logo" />
+    </div>
     <h1>Renueva 2026</h1>
     <p class="subtitle">Please share your information so we can support you.</p>
 
@@ -131,15 +135,29 @@
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
   }
 
+  .logo-holder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .logo {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+  }
+
   h1 {
     margin: 0;
     font-size: 1.6rem;
     color: #FFB74D;
+    text-align: center;
   }
 
   .subtitle {
     margin: 0.4rem 0 1.2rem;
     color: #CAC4D0;
+    text-align: center;
   }
 
   form {
